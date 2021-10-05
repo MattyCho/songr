@@ -1,0 +1,13 @@
+body {
+    background: #003D76;
+    color: white;
+}
+
+h1 {
+    background: #0374DF;
+    text-align: center;
+}
+
+.albumCover {
+    width: 50%;
+}
