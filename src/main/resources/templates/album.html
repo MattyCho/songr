@@ -6,10 +6,33 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/style.css" />
-    <title>3 Albums</title>
+    <title>Albums</title>
 </head>
 <body>
-    <h1>3 Albums</h1>
+    <h1>Albums</h1>
+
+    <form action="/albums" method="post">
+        <fieldset>
+            <legend>Add a new Album</legend>
+            <label for="title">Album Title</label>
+            <input type="text" name="title">
+            </br>
+            <lable for="artist">Artist</lable>
+            <input type="text" name="artist">
+            </br>
+            <label for="songCount">How many songs on the album?</label>
+            <input type="number" name="songCount">
+            </br>
+            <label for="length">How long is the album? (in seconds)</label>
+            <input type="number" name="length">
+            </br>
+            <label for="imageUrl">link to an image of the album cover</label>
+            <input type="text" name="imageUrl">
+            </br>
+            <input type="submit" value="Add Album">
+        </fieldset>
+    </form>
+
     <ul th:each="album : ${albums}">
         <img th:src="${album.imageUrl}" class="albumCover"/>
         <li th:text="'Album title: ' + ${album.title}"></li>
