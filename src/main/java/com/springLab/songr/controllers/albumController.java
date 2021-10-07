@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,18 +24,20 @@ public class albumController {
 
     @GetMapping("/albums")
     public String albumPage(Model m) {
-        Album frankSinatra = new Album("Come Fly With Me", "Frank Sinatra", 12, 2327, "/images/frankAlbumCover.jpg");
-        Album nerd = new Album("In Search Of...", "N.E.R.D", 12, 3237, "/images/nerdAlbumCover.jpg");
-        Album hamilton = new Album("Hamilton (Original Broadway Cast Recording)", "Lin-Manuel Miranda", 46, 8520, "/images/hamiltonAlbumCover.jpg");
-
-//        ArrayList<Album> albums = new ArrayList<>();
-//        albums.add(frankSinatra);
-//        albums.add(nerd);
-//        albums.add(hamilton);
+//        Album frankSinatra = new Album("Come Fly With Me", "Frank Sinatra", 12, 2327, "/images/frankAlbumCover.jpg");
+//        Album nerd = new Album("In Search Of...", "N.E.R.D", 12, 3237, "/images/nerdAlbumCover.jpg");
+//        Album hamilton = new Album("Hamilton (Original Broadway Cast Recording)", "Lin-Manuel Miranda", 46, 8520, "/images/hamiltonAlbumCover.jpg");
 
         List<Album> albums = albumRepository.findAll();
         m.addAttribute("albums", albums);
         return "album";
+    }
+
+    @GetMapping("/frank")
+    public String frankPage(Model m) {
+        Album frankAlbum = albumRepository.findByTitle("Come Fly With Me");
+        m.addAttribute("frankAlbum", frankAlbum);
+        return "singleAlbum";
     }
 
     @PostMapping("/albums")

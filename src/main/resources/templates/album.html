@@ -16,19 +16,19 @@
             <legend>Add a new Album</legend>
             <label for="title">Album Title</label>
             <input type="text" name="title">
-            </br>
+            <br>
             <lable for="artist">Artist</lable>
             <input type="text" name="artist">
-            </br>
+            <br>
             <label for="songCount">How many songs on the album?</label>
             <input type="number" name="songCount">
-            </br>
+            <br>
             <label for="length">How long is the album? (in seconds)</label>
             <input type="number" name="length">
-            </br>
-            <label for="imageUrl">link to an image of the album cover</label>
+            <br>
+            <label for="imageUrl">Link to an image of the album cover</label>
             <input type="text" name="imageUrl">
-            </br>
+            <br>
             <input type="submit" value="Add Album">
         </fieldset>
     </form>
@@ -39,6 +39,24 @@
         <li th:text="'Artist: ' + ${album.artist}"></li>
         <li th:text="'Song Count: ' + ${album.songCount}"></li>
         <li th:text="'Album Length: ' + ${album.length} + ' seconds'"></li>
+        <div>Tracklist:</div>
+        <ul th:each="song: ${album.trackList}">
+            <li th:text="${song.trackNumber} + '. ' + ${song.title} + ' (' + ${song.length} + ' seconds)'" ></li>
+        </ul>
+
+        <form action="/addSong" method="post">
+            <fieldset>
+                <legend>Add a song to this album</legend>
+                <label for="title">Song Title</label>
+                <input type="text" name="title">
+                <label for="length">Song Length (in seconds)</label>
+                <input type="number" name="length">
+                <label for="trackNumber">Track Number</label>
+                <input type="number" name="trackNumber">
+                <input type="hidden" name="albumTitle" th:value="${album.title}">
+                <input type="submit" value="Add Song">
+            </fieldset>
+        </form>
     </ul>
 </body>
 </html>
