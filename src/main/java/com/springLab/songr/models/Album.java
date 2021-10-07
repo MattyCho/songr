@@ -1,9 +1,7 @@
 package com.springLab.songr.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -16,6 +14,9 @@ public class Album {
     int songCount;
     int length;
     String imageUrl;
+
+    @OneToMany(mappedBy = "thisAlbum")
+    List<Song> trackList;
 
     protected Album() {
 
@@ -67,5 +68,13 @@ public class Album {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Song> getTrackList() {
+        return trackList;
+    }
+
+    public void setTrackList(List<Song> trackList) {
+        this.trackList = trackList;
     }
 }
